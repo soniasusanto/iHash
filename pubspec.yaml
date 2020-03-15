@@ -28,6 +28,7 @@ dependencies:
   cloud_firestore: ^0.13.4+2
   firebase_auth: ^0.15.5+2
   provider: ^4.0.4
+  clipboard_manager: ^0.0.4
 
 dev_dependencies:
   flutter_test:

@@ -164,6 +164,8 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - clipboard_manager (0.0.3):
+    - Flutter
   - cloud_firestore (0.0.1):
     - Firebase/Core
     - Firebase/Firestore (~> 6.0)
@@ -305,6 +307,7 @@ PODS:
     - TensorFlowLite
 
 DEPENDENCIES:
+  - clipboard_manager (from `.symlinks/plugins/clipboard_manager/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_firestore_web (from `.symlinks/plugins/cloud_firestore_web/ios`)
   - Firebase/Auth
@@ -345,6 +348,8 @@ SPEC REPOS:
     - TensorFlowLite
 
 EXTERNAL SOURCES:
+  clipboard_manager:
+    :path: ".symlinks/plugins/clipboard_manager/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   cloud_firestore_web:
@@ -367,6 +372,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  clipboard_manager: f4800834e62cc26b1cc4e0a92a35cd452dd8b827
   cloud_firestore: 31454d48df21f3e1a900015e36143c0d46a304b7
   cloud_firestore_web: 9ec3dc7f5f98de5129339802d491c1204462bfec
   Firebase: d55ddb0e0bb3207166cddc028647833d8a1b5b6f

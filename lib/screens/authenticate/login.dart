@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
         title: Text('Login to iHash', style: TextStyle(color: Colors.black)),
         actions: <Widget>[
           FlatButton.icon(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.account_circle),
               label: Text('Signup'),
               onPressed: () {
                 widget.toggleView();

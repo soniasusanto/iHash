@@ -1,4 +1,5 @@
 import 'package:ihash/index.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class Model extends StatefulWidget {
   @override
@@ -60,12 +61,51 @@ class _TfModel extends State<Model> {
                     height: 20,
                   ),
                   _outputs != null
-                      ? Text(
-                          "${_outputs.join(', ')}",
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 25.0,
-                            background: Paint()..color = Colors.white,
+                      ? Container(
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                "${_outputs.join(', ')}",
+                                style: TextStyle(
+                                  color: Colors.blueGrey,
+                                  fontSize: 20.0,
+                                  background: Paint()..color = Colors.white,
+                                ),
+                              ),
+                              Builder(
+                                  builder: (context) => IconButton(
+                                        icon: Icon(Icons.content_copy),
+                                        onPressed: () async {
+                                          dynamic result =
+                                              await ClipboardManager
+                                                  .copyToClipBoard(
+                                                      '${_outputs.join(', ')}');
+                                          if (result) {
+                                            final snackBar = SnackBar(
+                                              behavior:
+                                                  SnackBarBehavior.floating,
+                                              backgroundColor: Colors.blueGrey,
+                                              content:
+                                                  Text('Copied to Clipboard!',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20.0,
+                                                      )),
+                                              action: SnackBarAction(
+                                                textColor: Colors.white,
+                                                label: 'Undo',
+                                                onPressed: () async {
+                                                  await ClipboardManager
+                                                      .copyToClipBoard('');
+                                                },
+                                              ),
+                                            );
+                                            Scaffold.of(context)
+                                                .showSnackBar(snackBar);
+                                          }
+                                        },
+                                      )),
+                            ],
                           ),
                         )
                       : Container()
