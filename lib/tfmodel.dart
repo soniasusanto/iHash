@@ -28,7 +28,7 @@ class _TfModel extends State<Model> {
       body: _loading
           ? Container(
               alignment: Alignment.center,
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(backgroundColor: Colors.blue),
             )
           : Container(
               width: MediaQuery.of(context).size.width,
@@ -36,7 +36,26 @@ class _TfModel extends State<Model> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _image == null ? Container() : Image.file(_image),
+                  _image == null
+                      ? Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 40.0),
+                          child: Column(
+                            children: <Widget>[
+                              Text('Welcome to iHash!',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontSize: 30.0,
+                                      backgroundColor: Colors.grey[100])),
+                              SizedBox(height: 40.0),
+                              Text('Upload an image to begin!',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey,
+                                      fontSize: 30.0,
+                                      backgroundColor: Colors.grey[100]))
+                            ],
+                          ))
+                      : Image.file(_image),
                   SizedBox(
                     height: 20,
                   ),
@@ -44,8 +63,8 @@ class _TfModel extends State<Model> {
                       ? Text(
                           "${_outputs.join(', ')}",
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                            color: Colors.blueGrey,
+                            fontSize: 25.0,
                             background: Paint()..color = Colors.white,
                           ),
                         )
@@ -55,10 +74,9 @@ class _TfModel extends State<Model> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: pickImage,
-        child: Icon(Icons.image),
+        backgroundColor: Colors.black,
+        child: Icon(Icons.image, color: Colors.grey),
       ),
-      bottomNavigationBar:
-          BottomAppBar(child: Icon(Icons.bookmark), color: Colors.grey),
     );
   }
 
@@ -98,9 +116,41 @@ class _TfModel extends State<Model> {
   }
 
   var _hashtags = {
-    'Beauty': ['#beautylovers', '#intothegloss'],
-    'Travel': ['#travelblogger', '#travellife'],
-    'Food': ['#foodies', '#foodlovers'],
+    'Beauty': [
+      '#beautylovers',
+      '#intothegloss',
+      '#makeuplovers',
+      '#makeupflatlay',
+      '#motd',
+      '#makeupoftheday',
+      '#makeuplife',
+      '#igmakeup',
+      '#instabeauty',
+      '#beautyblogger'
+    ],
+    'Travel': [
+      '#travelblogger',
+      '#travellife',
+      '#wanderlust',
+      '#traveltheworld',
+      '#igtravel',
+      '#travelgram',
+      '#instago',
+      '#mytravelgram',
+      '#worldcaptures',
+      '#instavacation',
+      '#vacaylife'
+    ],
+    'Food': [
+      '#foodies',
+      '#foodlovers',
+      '#igfood',
+      '#foodiesofinstagram',
+      '#igfoodies',
+      '#foodphotography',
+      '#foodiesunite',
+      '#foodislife'
+    ],
     'Dogs': [
       '#dogsofinstagram',
       '#igdogs',
@@ -108,6 +158,8 @@ class _TfModel extends State<Model> {
       '#instadog',
       '#petstagram',
       '#doggos',
+      '#dogparent',
+      '#dogs'
     ]
   };
 

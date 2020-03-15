@@ -1,5 +1,6 @@
 import 'package:ihash/index.dart';
-import 'package:ihash/screens/authenticate/sign_in.dart';
+import 'package:ihash/screens/authenticate/login.dart';
+import 'package:ihash/screens/authenticate/signup.dart';
 
 class Authenticate extends StatefulWidget {
   @override
@@ -7,10 +8,15 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  bool showLogin = true;
+  void toggleView() {
+    setState(() => showLogin = !showLogin);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SignIn(),
-    );
+    return showLogin
+        ? Login(toggleView: toggleView)
+        : Signup(toggleView: toggleView);
   }
 }

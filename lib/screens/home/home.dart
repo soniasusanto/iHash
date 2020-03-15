@@ -10,15 +10,18 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Text('iHash'),
-        backgroundColor: Colors.blueGrey[400],
+        title: Text(
+          'iHash',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.blueGrey[200],
         elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
               icon: Icon(Icons.person),
               label: Text('logout'),
               onPressed: () async {
-                await _auth.signOut();
+                await _auth.logout();
               })
         ],
       ),
