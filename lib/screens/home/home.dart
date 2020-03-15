@@ -12,7 +12,11 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'iHash',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w900,
+          ),
         ),
         backgroundColor: Colors.blueGrey[200],
         elevation: 0.0,

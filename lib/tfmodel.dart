@@ -72,8 +72,14 @@ class _TfModel extends State<Model> {
                                   background: Paint()..color = Colors.white,
                                 ),
                               ),
+                              SizedBox(height: 20.0),
                               Builder(
                                   builder: (context) => IconButton(
+                                        padding: EdgeInsets.only(
+                                          left: 300.0,
+                                          top: 0.0,
+                                          bottom: 50.0,
+                                        ),
                                         icon: Icon(Icons.content_copy),
                                         onPressed: () async {
                                           dynamic result =
