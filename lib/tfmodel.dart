@@ -11,10 +11,16 @@ class _TfModel extends State<Model> {
   File _image;
   bool _loading = false;
 
+  FirebaseUser user;
+  FirebaseAuth _auth;
+
+  final db = Firestore.instance;
+
   @override
   void initState() {
     super.initState();
     _loading = true;
+    _auth = FirebaseAuth.instance;
 
     loadModel().then((value) {
       setState(() {
@@ -56,62 +62,111 @@ class _TfModel extends State<Model> {
                                       backgroundColor: Colors.grey[100]))
                             ],
                           ))
-                      : Image.file(_image),
+                      : Image.file(
+                          _image,
+                          height: 400.0,
+                          alignment: Alignment.center,
+                          fit: BoxFit.contain,
+                        ),
                   SizedBox(
                     height: 20,
                   ),
                   _outputs != null
                       ? Container(
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                "${_outputs.join(', ')}",
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 20.0,
-                                  background: Paint()..color = Colors.white,
+                          child: Flexible(
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  "${_outputs.join(', ')}",
+                                  style: TextStyle(
+                                    color: Colors.blueGrey,
+                                    fontSize: 20.0,
+                                    background: Paint()..color = Colors.white,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 20.0),
-                              Builder(
+                                SizedBox(height: 20.0),
+                                Builder(
                                   builder: (context) => IconButton(
-                                        padding: EdgeInsets.only(
-                                          left: 300.0,
-                                          top: 0.0,
-                                          bottom: 50.0,
-                                        ),
-                                        icon: Icon(Icons.content_copy),
-                                        onPressed: () async {
-                                          dynamic result =
+                                    alignment: Alignment.topRight,
+                                    icon: Icon(Icons.content_copy),
+                                    onPressed: () async {
+                                      dynamic result = await ClipboardManager
+                                          .copyToClipBoard(
+                                              '${_outputs.join(', ')}');
+                                      if (result) {
+                                        final snackBar = SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          backgroundColor: Colors.blueGrey,
+                                          content: Text('Copied to Clipboard!',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20.0,
+                                              )),
+                                          action: SnackBarAction(
+                                            textColor: Colors.white,
+                                            label: 'Undo',
+                                            onPressed: () async {
                                               await ClipboardManager
-                                                  .copyToClipBoard(
-                                                      '${_outputs.join(', ')}');
-                                          if (result) {
-                                            final snackBar = SnackBar(
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              backgroundColor: Colors.blueGrey,
-                                              content:
-                                                  Text('Copied to Clipboard!',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20.0,
-                                                      )),
-                                              action: SnackBarAction(
-                                                textColor: Colors.white,
-                                                label: 'Undo',
-                                                onPressed: () async {
-                                                  await ClipboardManager
-                                                      .copyToClipBoard('');
-                                                },
-                                              ),
-                                            );
-                                            Scaffold.of(context)
-                                                .showSnackBar(snackBar);
-                                          }
-                                        },
-                                      )),
-                            ],
+                                                  .copyToClipBoard('');
+                                            },
+                                          ),
+                                        );
+                                        Scaffold.of(context)
+                                            .showSnackBar(snackBar);
+                                      }
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 12.0),
+                                Builder(
+                                    builder: (context) => RaisedButton(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 30.0),
+                                          color: Colors.grey,
+                                          child: Text(
+                                            'Save to favorites',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18.0),
+                                          ),
+                                          onPressed: () async {
+                                            user = await _auth.currentUser();
+                                            String uid = user.uid;
+                                            DocumentReference result = await db
+                                                .collection('Hashtags')
+                                                .add({
+                                              'userId': '$uid',
+                                              'hashtags':
+                                                  '${_outputs.join(', ')}'
+                                            });
+                                            if (result != null) {
+                                              final snackBar = SnackBar(
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                backgroundColor:
+                                                    Colors.blueGrey,
+                                                content:
+                                                    Text('Saved to favorites!',
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 20.0,
+                                                        )),
+                                                action: SnackBarAction(
+                                                  textColor: Colors.white,
+                                                  label: 'Undo',
+                                                  onPressed: () async {
+                                                    await ClipboardManager
+                                                        .copyToClipBoard('');
+                                                  },
+                                                ),
+                                              );
+                                              Scaffold.of(context)
+                                                  .showSnackBar(snackBar);
+                                            }
+                                          },
+                                        ))
+                              ],
+                            ),
                           ),
                         )
                       : Container()
