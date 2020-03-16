@@ -1,8 +1,22 @@
 import 'package:ihash/index.dart';
+
+import 'package:ihash/screens/home/favorites.dart';
 import 'package:ihash/services/auth.dart';
 import 'package:ihash/tfmodel.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeState();
+  }
+}
+
+class _HomeState extends State<Home> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    Model(),
+    Favorite(),
+  ];
   final AuthService _auth = AuthService();
 
   @override
@@ -29,9 +43,36 @@ class Home extends StatelessWidget {
               })
         ],
       ),
-      body: Container(
-        child: Model(),
-      ),
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: onTabTapped,
+          currentIndex: _currentIndex,
+          backgroundColor: Colors.blueGrey[100],
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                  size: 30.0,
+                ),
+                title: Text(
+                  'Home',
+                  style: TextStyle(color: Colors.black, fontSize: 16.0),
+                )),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite, color: Colors.black, size: 30.0),
+              title: Text(
+                'Favorites',
+                style: TextStyle(color: Colors.black, fontSize: 16.0),
+              ),
+            ),
+          ]),
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }
