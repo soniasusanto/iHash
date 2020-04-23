@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[200],
         elevation: 0.0,
-        title: Text('Login to iHash', style: TextStyle(color: Colors.black)),
+        title: Text('iHash', style: TextStyle(color: Colors.black)),
         actions: <Widget>[
           FlatButton.icon(
               icon: Icon(Icons.account_circle),
@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: 200.0),
               TextFormField(
                   decoration: textInputDecoration.copyWith(hintText: 'Email'),
                   validator: (val) =>

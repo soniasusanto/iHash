@@ -65,8 +65,9 @@ class _TfModel extends State<Model> {
                       : Image.file(
                           _image,
                           height: 400.0,
+                          width: 400.0,
                           alignment: Alignment.center,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.fitWidth,
                         ),
                   SizedBox(
                     height: 20,
@@ -78,6 +79,7 @@ class _TfModel extends State<Model> {
                               children: <Widget>[
                                 Text(
                                   "${_outputs.join(', ')}",
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.blueGrey,
                                     fontSize: 20.0,
