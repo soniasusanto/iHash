@@ -32,9 +32,6 @@ https://www.tensorflow.org/lite
 
 ## Gallery
 
-![Login](assets/images/Login.png = 250x250)
-![Home](assets/images/Home.png)
-![Image and Hashtags](assets/images/ImageAndHashtags.png)
-![Copied to clipboard](assets/images/CopiedToClipboard.png)
-![Saved to favorites](assets/images/SavedToFavorites.png)
-![Favorites](assets/images/Favorites.png)
+<img src="assets/images/Login.png" width="250"> <img src="assets/images/Home.png" width="250">
+<img src="assets/images/ImageAndHashtags.png" width="250"> <img src="assets/images/CopiedToClipboard.png" width="250">
+<img src="assets/images/SavedToFavorites.png" width="250"> <img src="assets/images/Favorites.png" width="250">
