@@ -32,9 +32,7 @@ https://www.tensorflow.org/lite
 
 ## Gallery
 
-<img src="assets/images/Home.png" width="250"> 
-<img src="assets/images/ImageAndHashtags.png" width="250">
-<img src="assets/images/CopiedToClipboard.png" width="250"> 
-<img src="assets/images/SavedToFavorites.png" width="250">
+<img src="assets/images/Home.png" width="250"> <img src="assets/images/ImageAndHashtags.png" width="250">
+<img src="assets/images/CopiedToClipboard.png" width="250"> <img src="assets/images/SavedToFavorites.png" width="250">
 <img src="assets/images/Favorites.png" width="250">
 
