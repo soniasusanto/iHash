@@ -24,7 +24,12 @@ class _SignupState extends State<Signup> {
       appBar: AppBar(
           backgroundColor: Colors.blueGrey[200],
           elevation: 0.0,
-          title: Text('iHash', style: TextStyle(color: Colors.black)),
+          title: Text('iHash',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 30.0,
+                fontWeight: FontWeight.w900,
+              )),
           actions: <Widget>[
             FlatButton.icon(
                 icon: Icon(Icons.account_circle),

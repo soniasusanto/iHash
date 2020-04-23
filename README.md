@@ -32,7 +32,7 @@ https://www.tensorflow.org/lite
 
 ## Gallery
 
-![Login](assets/images/Login.png)
+![Login](assets/images/Login.png = 250x250)
 ![Home](assets/images/Home.png)
 ![Image and Hashtags](assets/images/ImageAndHashtags.png)
 ![Copied to clipboard](assets/images/CopiedToClipboard.png)
